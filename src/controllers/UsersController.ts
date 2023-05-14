@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import UserService from "../services/UserService";
-import { apiResponseFormat } from "../utils/formatresponse";
 import bcrypt from "../utils/bcrypt";
 import jwt from "../utils/jwt";
 import { BadRequestError } from "../error_handlers/errormessages";
@@ -28,12 +27,7 @@ export default {
 
             const profile = await UserService.update(req.user.id, data);
 
-            return res.status(200)
-                .send(apiResponseFormat(
-                    200,
-                    profile,
-                    "Profile created"
-                ));
+            return res.status(200).send(profile);
         } catch (error) {
             next(error);
         }
@@ -43,12 +37,7 @@ export default {
         try {
             const users = await UserService.findAll();
 
-            return res.status(200)
-                .send(apiResponseFormat(
-                    200,
-                    users,
-                    "Users found"
-                ));
+            return res.status(200).send(users);
         } catch (error) {
             next(error);
         }
@@ -59,12 +48,7 @@ export default {
             const id = req.params.id;
             const users = await UserService.findOne(id);
 
-            return res.status(200)
-                .send(apiResponseFormat(
-                    200,
-                    users,
-                    "User found"
-                ));
+            return res.status(200).send(users);
         } catch (error) {
             next(error);
         }
@@ -75,12 +59,7 @@ export default {
             const id = req.params.id;
             const users = await UserService.removeProfile(id);
 
-            return res.status(200)
-                .send(apiResponseFormat(
-                    200,
-                    users,
-                    "User found"
-                ));
+            return res.status(200).send(users);
         } catch (error) {
             next(error);
         }
@@ -108,12 +87,7 @@ export default {
 
             const user = await UserService.register(data);
 
-            return res.status(201)
-                .send(apiResponseFormat(
-                    201,
-                    user,
-                    "Account created"
-                ));
+            return res.status(201).send(user);
         } catch (error) {
             next(error);
         }
@@ -140,20 +114,15 @@ export default {
             
             const { token, expires_in } = jwt.generateToken({id: user._id, email})
 
-            return res.status(200)
-                .send(apiResponseFormat(
-                    200,
-                    {
-                        user: {
-                            _id: user._id,
-                            email: user.email,
-                            status: user.status,
-                        },
-                        token,
-                        expires_in
-                    },
-                    "Login successful"
-                ));
+            return res.status(200).send({
+                user: {
+                    _id: user._id,
+                    email: user.email,
+                    status: user.status,
+                },
+                token,
+                expires_in
+            })
         } catch (error) {
             next(error);
         }
