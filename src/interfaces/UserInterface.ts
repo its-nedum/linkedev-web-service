@@ -2,7 +2,7 @@ export interface IUser {
     firstName: string,
     lastName: string,
     email: string,
-    password?: string,
+    password: string,
     skills: string,
     yearsOfExperience: number,
     bio: string,
@@ -12,7 +12,7 @@ export interface IUser {
 export interface IAuth {
     email: string,
     password: string,
-    status?: number,
+    status: number,
 }
 
 export interface DataStoredInToken {
