@@ -74,6 +74,10 @@ export default {
                 throw new BadRequestError("Missing some required fields");
             }
 
+            if(password.length < 8){
+                throw new BadRequestError("*Password is too short");
+            }
+
             // check if user exist
             const userExist = await UserService.findByEmail(email);
             if(userExist){
@@ -100,6 +104,10 @@ export default {
 
             if(!email || !password){
                 throw new BadRequestError("Missing some required fields");
+            }
+
+            if(password.length < 8){
+                throw new BadRequestError("*Password is too short");
             }
 
             // check if user exist

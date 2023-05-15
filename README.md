@@ -12,8 +12,8 @@ The name was coined from [LinkedIn](https://www.linkedin.com) (a social networki
 [Linked Dev - Client](https://linked-dev.netlify.app/) `https://linked-dev.netlify.app/`
 
 ## Repository
-- **Server** [Repo](https://github.com/its-nedum/linkedev-web-service)
-- **Client** [Repo](https://github.com/its-nedum/linkedev-web-client)
+- **Server** [Repo](https://github.com/its-nedum/linkedev-web-service) `https://github.com/its-nedum/linkedev-web-service`
+- **Client** [Repo](https://github.com/its-nedum/linkedev-web-client) `https://github.com/its-nedum/linkedev-web-client`
 
 ## Installation
 
@@ -34,10 +34,10 @@ $ npm install
 ## Envronment Variables
 Linked dev web service requires the following in your `.env`
 
-`PORT`: Port number
-`MONGODB_URI`: MongoDB connection uri
-`JWT_SECRET`: JSON Web Tokens secret
-`JWT_EXPIRY`: JSON Web Tokens expiry duration
+- `PORT`: Port number
+- `MONGODB_URI`: MongoDB connection uri
+- `JWT_SECRET`: JSON Web Tokens secret
+- `JWT_EXPIRY`: JSON Web Tokens expiry duration
 
 ## Usage
 
