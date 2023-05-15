@@ -33,8 +33,11 @@ export default {
         }
     },
 
-    findAll: async (_req: Request, res: Response, next: NextFunction) => {
+    findAll: async (req: Request, res: Response, next: NextFunction) => {
+        // { _end: '10', _start: '0' }
         try {
+            const { _end: pageSize, _start: currentPage } = req.query;
+            // const 
             const users = await UserService.findAll();
 
             return res.status(200).send(users);
