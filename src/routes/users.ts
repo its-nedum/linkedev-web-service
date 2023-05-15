@@ -1,19 +1,18 @@
 import { Router } from "express";
 import controller from "../controllers/UsersController";
-import middlewares from "../middlewares";
 
 const router = Router();
 
 router
     .route("/users")
     .get(controller.findAll)
-    .post(middlewares.validateToken, controller.profile);
+    .post(controller.profile);
 
 router
     .route("/users/:id")
     .get(controller.findOne)
-    .patch(middlewares.validateToken, controller.profile)
-    .delete(middlewares.validateToken, controller.destroy);
+    .patch(controller.profile)
+    .delete(controller.destroy);
 
 router
     .route("/register")
