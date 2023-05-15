@@ -2,8 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import UserService from "../services/UserService";
 import bcrypt from "../utils/bcrypt";
 import jwt from "../utils/jwt";
-import { BadRequestError } from "../error_handlers/errormessages";
-
+import { BadRequestError } from "../error_handlers";
 
 export default {
     profile: async (req: Request, res: Response, next: NextFunction) => {
@@ -34,11 +33,10 @@ export default {
     },
 
     findAll: async (req: Request, res: Response, next: NextFunction) => {
-        // { _end: '10', _start: '0' }
         try {
             const { _end: pageSize, _start: currentPage } = req.query;
-            // const 
-            const users = await UserService.findAll();
+
+            const users = await UserService.findAll(Number(pageSize), Number(currentPage));
 
             return res.status(200).send(users);
         } catch (error) {
