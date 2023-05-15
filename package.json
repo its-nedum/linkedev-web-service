@@ -16,7 +16,8 @@
   "keywords": [
     "nodejs",
     "typescript",
-    "mongodb"
+    "mongodb",
+    "mongoose"
   ],
   "license": "MIT",
   "dependencies": {
