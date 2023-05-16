@@ -9,7 +9,10 @@ const UserSchema = new mongoose.Schema({
     yearsOfExperience: Number,
     bio: String,
     status: Number,
-},{});
+},
+{
+    timestamps: true,
+});
 
 const Users = mongoose.model("users", UserSchema);
 

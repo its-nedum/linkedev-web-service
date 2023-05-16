@@ -7,7 +7,9 @@ import { BadRequestError } from "../error_handlers";
 export default {
     profile: async (req: Request, res: Response, next: NextFunction) => {
         try {
+            const paramsId = req.params.id;
             const {
+                id,
                 firstName,
                 lastName,
                 skills,
@@ -23,8 +25,8 @@ export default {
                 ...req.body,
                 status: 1,
             }
-
-            const profile = await UserService.update(req.user.id, data);
+            const userId = id ?? paramsId;
+            const profile = await UserService.update(userId, data);
 
             return res.status(200).send(profile);
         } catch (error) {
