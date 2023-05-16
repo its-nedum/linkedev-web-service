@@ -1,3 +1,5 @@
+import { Response, Request, NextFunction } from "express";
+
 class BaseError extends Error {
     status: number;
     constructor(message: string, status: number) {
@@ -17,3 +19,13 @@ export class BadRequestError extends BaseError {
     }  
 }
 
+export const ErrorHandler = (err: BaseError, _req: Request, res: Response, _next: NextFunction) => {
+    const statusCode = err.status || 500;
+
+    res.status(statusCode).send({
+        message: err.message,
+        status: statusCode,
+        name: err.name,
+        stack: err.stack
+    });
+};

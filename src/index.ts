@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import connection from "./connection";
 import userRoutes from "./routes/users";
+import { ErrorHandler } from "./error_handlers";
 
 dotenv.config();
 
@@ -27,6 +28,9 @@ app.use(express.json());
 
 // set API user routes
 app.use("/api/v1", userRoutes);
+
+// handle errors
+app.use(ErrorHandler)
 
 app.get('/', (_req: Request, res: Response) => {
   res.send("Welcome to linked dev API");
